@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import pandas as pd
 from pmdarima import pm
 import joblib
 
@@ -42,6 +43,13 @@ def main():
     # Example: Plot diagnostics of the model
     model.plot_diagnostics()
     plt.show()
+
+    # Save the model
+    save_model(model, 'arima_model.pkl')
+
+if __name__ == "__main__":
+    main()
+
 
     # Save the model
     save_model(model, 'arima_model.pkl')
