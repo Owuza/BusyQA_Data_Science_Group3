@@ -1,7 +1,7 @@
 import streamlit as st
-import joblib
+import pandas as pd
+import numpy as np
 import pmdarima as pm
-# import pmdarima as pm
 
 uploaded_file = st.file_uploader("Upload CSV file", type=['csv'])
 
@@ -17,19 +17,12 @@ model = pm.auto_arima(data.Sales, start_p=0, start_q=0, max_p=3, max_q=3, m=12,m
                       error_action='ignore', 
                       suppress_warnings=True, 
                       stepwise=True) 
+
 st.title('Auto-ARIMA Forecasting')
 
-forecast = model.predict(n_periods=6)
+forecast = model.predict(n_periods=12)
 st.line_chart(forecast)
 
   # Display the prediction
 st.write(f"Estimated Price: ${forecast[0]:,.2f}")
-
-print(forecast)
-# Load or define your time series data
-# For example, you can load a CSV file
-
-# file_path ='/Users/saheedadeitan/Downloads/BusyQA_bootcamp//Superstore Sales Dataset copy.csv'
-# data = pd.read_csv(file_path)
-
 
